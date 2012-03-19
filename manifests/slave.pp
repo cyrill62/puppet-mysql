@@ -17,7 +17,9 @@ class mysql::slave inherits mysql::slave::common {
         "4","5": { }
 
         default: {
-          Augeas["my.cnf/binlog-format"] {
+          augeas { "my.cnf/binlog-format":
+            context => "${mysql::params::mycnfctx}/mysqld/",
+            load_path => "/usr/share/augeas/lenses/contrib/",
             changes => [
               "set binlog_format ${mysql::params::replication_binlog_format}"
             ]
@@ -33,7 +35,9 @@ class mysql::slave inherits mysql::slave::common {
         "4","5": { }
 
         default: {
-          Augeas["my.cnf/binlog-format"] {
+          augeas { "my.cnf/binlog-format":
+            context => "${mysql::params::mycnfctx}/mysqld/",
+            load_path => "/usr/share/augeas/lenses/contrib/",
             changes => [
               "set binlog_format ${mysql::params::replication_binlog_format}"
             ]
